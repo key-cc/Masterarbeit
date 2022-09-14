@@ -1,76 +1,3 @@
-## Summary
-
-This is the PyTorch code for the following papers:
-
-[
-Hirokatsu Kataoka, Tenga Wakamiya, Kensho Hara, and Yutaka Satoh,  
-"Would Mega-scale Datasets Further Enhance Spatiotemporal 3D CNNs",  
-arXiv preprint, arXiv:2004.04968, 2020.
-](https://arxiv.org/abs/2004.04968)
-
-[
-Kensho Hara, Hirokatsu Kataoka, and Yutaka Satoh,  
-"Towards Good Practice for Action Recognition with Spatiotemporal 3D Convolutions",  
-Proceedings of the International Conference on Pattern Recognition, pp. 2516-2521, 2018.
-](https://ieeexplore.ieee.org/document/8546325)
-
-[
-Kensho Hara, Hirokatsu Kataoka, and Yutaka Satoh,  
-"Can Spatiotemporal 3D CNNs Retrace the History of 2D CNNs and ImageNet?",  
-Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp. 6546-6555, 2018.
-](http://openaccess.thecvf.com/content_cvpr_2018/html/Hara_Can_Spatiotemporal_3D_CVPR_2018_paper.html)
-
-[
-Kensho Hara, Hirokatsu Kataoka, and Yutaka Satoh,  
-"Learning Spatio-Temporal Features with 3D Residual Networks for Action Recognition",  
-Proceedings of the ICCV Workshop on Action, Gesture, and Emotion Recognition, 2017.
-](http://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w44/Hara_Learning_Spatio-Temporal_Features_ICCV_2017_paper.pdf)
-
-This code includes training, fine-tuning and testing on Kinetics, Moments in Time, ActivityNet, UCF-101, and HMDB-51.
-
-## Citation
-
-If you use this code or pre-trained models, please cite the following:
-
-```bibtex
-@inproceedings{hara3dcnns,
-  author={Kensho Hara and Hirokatsu Kataoka and Yutaka Satoh},
-  title={Can Spatiotemporal 3D CNNs Retrace the History of 2D CNNs and ImageNet?},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-  pages={6546--6555},
-  year={2018},
-}
-```
-
-## Pre-trained models
-
-Pre-trained models are available [here](https://drive.google.com/open?id=1xbYbZ7rpyjftI_KCk6YuL-XrfQDz7Yd4).  
-All models are trained on Kinetics-700 (_K_), Moments in Time (_M_), STAIR-Actions (_S_), or merged datasets of them (_KM_, _KS_, _MS_, _KMS_).  
-If you want to finetune the models on your dataset, you should specify the following options.
-
-```misc
-r3d18_K_200ep.pth: --model resnet --model_depth 18 --n_pretrain_classes 700
-r3d18_KM_200ep.pth: --model resnet --model_depth 18 --n_pretrain_classes 1039
-r3d34_K_200ep.pth: --model resnet --model_depth 34 --n_pretrain_classes 700
-r3d34_KM_200ep.pth: --model resnet --model_depth 34 --n_pretrain_classes 1039
-r3d50_K_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 700
-r3d50_KM_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 1039
-r3d50_KMS_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 1139
-r3d50_KS_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 800
-r3d50_M_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 339
-r3d50_MS_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 439
-r3d50_S_200ep.pth: --model resnet --model_depth 50 --n_pretrain_classes 100
-r3d101_K_200ep.pth: --model resnet --model_depth 101 --n_pretrain_classes 700
-r3d101_KM_200ep.pth: --model resnet --model_depth 101 --n_pretrain_classes 1039
-r3d152_K_200ep.pth: --model resnet --model_depth 152 --n_pretrain_classes 700
-r3d152_KM_200ep.pth: --model resnet --model_depth 152 --n_pretrain_classes 1039
-r3d200_K_200ep.pth: --model resnet --model_depth 200 --n_pretrain_classes 700
-r3d200_KM_200ep.pth: --model resnet --model_depth 200 --n_pretrain_classes 1039
-```
-
-Old pretrained models are still available [here](https://drive.google.com/drive/folders/1zvl89AgFAApbH0At-gMuZSeQB_LpNP-M?usp=sharing).  
-However, some modifications are required to use the old pretrained models in the current scripts.
-
 ## Requirements
 
 * [PyTorch](http://pytorch.org/) (ver. 0.4+ required)
@@ -83,39 +10,7 @@ conda install pytorch torchvision cudatoolkit=10.1 -c soumith
 
 * Python 3
 
-## Preparation
-
-### ActivityNet
-
-* Download videos using [the official crawler](https://github.com/activitynet/ActivityNet/tree/master/Crawler).
-* Convert from avi to jpg files using ```util_scripts/generate_video_jpgs.py```
-
-```bash
-python -m util_scripts.generate_video_jpgs mp4_video_dir_path jpg_video_dir_path activitynet
-```
-
-* Add fps infomartion into the json file ```util_scripts/add_fps_into_activitynet_json.py```
-
-```bash
-python -m util_scripts.add_fps_into_activitynet_json mp4_video_dir_path json_file_path
-```
-
-### Kinetics
-
-* Download videos using [the official crawler](https://github.com/activitynet/ActivityNet/tree/master/Crawler/Kinetics).
-  * Locate test set in ```video_directory/test```.
-* Convert from avi to jpg files using ```util_scripts/generate_video_jpgs.py```
-
-```bash
-python -m util_scripts.generate_video_jpgs mp4_video_dir_path jpg_video_dir_path kinetics
-```
-
-* Generate annotation file in json format similar to ActivityNet using ```util_scripts/kinetics_json.py```
-  * The CSV files (kinetics_{train, val, test}.csv) are included in the crawler.
-
-```bash
-python -m util_scripts.kinetics_json csv_dir_path 700 jpg_video_dir_path jpg dst_json_path
-```
+## Dataset Preparation
 
 ### UCF-101
 
