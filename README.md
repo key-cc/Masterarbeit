@@ -1,29 +1,3 @@
-# 3D ResNets for Action Recognition
-
-## Update (2020/4/13)
-
-We published a paper on arXiv.
-
-[
-Hirokatsu Kataoka, Tenga Wakamiya, Kensho Hara, and Yutaka Satoh,  
-"Would Mega-scale Datasets Further Enhance Spatiotemporal 3D CNNs",  
-arXiv preprint, arXiv:2004.04968, 2020.
-](https://arxiv.org/abs/2004.04968)
-
-We uploaded the pretrained models described in this paper including ResNet-50 pretrained on the combined dataset with Kinetics-700 and Moments in Time.
-
-## Update (2020/4/10)
-
-We significantly updated our scripts. If you want to use older versions to reproduce our CVPR2018 paper, you should use the scripts in the CVPR2018 branch.
-
-This update includes as follows:
-* Refactoring whole project
-* Supporting the newer PyTorch versions
-* Supporting distributed training
-* Supporting training and testing on the Moments in Time dataset.
-* Adding R(2+1)D models
-* Uploading 3D ResNet models trained on the Kinetics-700, Moments in Time, and STAIR-Actions datasets
-
 ## Summary
 
 This is the PyTorch code for the following papers:
