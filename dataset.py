@@ -3,7 +3,6 @@ from torchvision import get_image_backend
 from datasets.videodataset import VideoDataset
 from datasets.videodataset_multiclips import (VideoDatasetMultiClips,
                                               collate_fn)
-from datasets.activitynet import ActivityNet
 from datasets.loader import VideoLoader, VideoLoaderHDF5, VideoLoaderFlowHDF5
 
 
@@ -99,17 +98,7 @@ def get_validation_data(video_path,
         video_path_formatter = (lambda root_path, label, video_id: root_path /
                                 label / f'{video_id}.hdf5')
 
-    if dataset_name == 'activitynet':
-        validation_data = ActivityNet(video_path,
-                                      annotation_path,
-                                      'validation',
-                                      spatial_transform=spatial_transform,
-                                      temporal_transform=temporal_transform,
-                                      target_transform=target_transform,
-                                      video_loader=loader,
-                                      video_path_formatter=video_path_formatter)
-    else:
-        validation_data = VideoDatasetMultiClips(
+    validation_data = VideoDatasetMultiClips(
             video_path,
             annotation_path,
             'validation',
