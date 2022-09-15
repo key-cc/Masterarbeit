@@ -1,15 +1,3 @@
-## Requirements
-
-* [PyTorch](http://pytorch.org/) (ver. 0.4+ required)
-
-```bash
-conda install pytorch torchvision cudatoolkit=10.1 -c soumith
-```
-
-* FFmpeg, FFprobe
-
-* Python 3
-
 ## Dataset Preparation
 
 ### UCF-101
