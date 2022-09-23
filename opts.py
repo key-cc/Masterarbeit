@@ -104,7 +104,7 @@ def parse_opts():
                         type=float,
                         help='Weight Decay')
     parser.add_argument('--mean_dataset',
-                        default='kinetics',
+                        default='0.5',
                         type=str,
                         help=('dataset for mean values of mean subtraction'
                               '(activitynet | kinetics | 0.5)'))
