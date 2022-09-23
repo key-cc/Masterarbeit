@@ -4,7 +4,7 @@
 
 * Download videos and train/test splits
 ```bash
-cd /Masterarbeit/hmdb51
+cd /Masterarbeit/ucf101
 bash download_annotations.sh
 bash download_videos.sh
 ```
@@ -23,7 +23,12 @@ python -m util_scripts.ucf101_json annotation_dir_path jpg_video_dir_path dst_js
 
 ### HMDB-51
 
-* Download videos and train/test splits [here](http://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/).
+* Download videos and train/test splits
+```bash
+cd /Masterarbeit/hmdb51
+bash download_annotations.sh
+bash download_videos.sh
+```
 * Convert from avi to jpg files using ```util_scripts/generate_video_jpgs.py```
 
 ```bash
