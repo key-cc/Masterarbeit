@@ -2,7 +2,12 @@
 
 ### UCF-101
 
-* Download videos and train/test splits [here](http://crcv.ucf.edu/data/UCF101.php).
+* Download videos and train/test splits
+```bash
+cd /Masterarbeit/hmdb51
+bash download_annotations.sh
+bash download_videos.sh
+```
 * Convert from avi to jpg files using ```util_scripts/generate_video_jpgs.py```
 
 ```bash
